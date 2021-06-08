@@ -17,7 +17,7 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Integer> {
     Usuario findByUserAndPsw (@Param("user") String user, @Param("psw") String psw);
 
     //para comprobar que al registrar no se repita el nombre de usuario
-    Optional<Usuario> findByUser (@Param("user") String user);
+    Usuario findByUser (@Param("user") String user);
     //para obtener los usuarios de un determinado rol, en nuestro caso nos servir� para obtener los del rol 1, para hacer el crud
     List<Usuario> findByRol (@Param("rol") int rol);
     

@@ -56,7 +56,9 @@ public class ServicioUsuarios {
     
     
     public void saveUser(Usuario user) {
-        ur.save(user);
+    	
+    	ur.save(user);
+        
     }
     
     public ResponseEntity<String>  deleteUser(Integer id) {
@@ -66,6 +68,24 @@ public class ServicioUsuarios {
           // Le pasamos los datos
           Usuario p = op.get();
           ur.deleteById(id);
+          return ResponseEntity.ok("Usuario eliminado correctamente");
+      } else {
+          return ResponseEntity.noContent().build();
+      }
+       
+    }
+    
+    public ResponseEntity<String>  updateUser(Integer id,Usuario u) {
+    	Optional<Usuario> op = ur.findById(id);
+   	 // Devolvemos el usuario si existe.
+   	     if (op.isPresent()) {
+   	 // Le pasamos los datos
+   	         Usuario p = op.get();
+   	         p.setUser(u.getUser());
+   	         p.setPsw(u.getPsw());
+   	         p.setCpsw(u.getCpsw());
+   	        
+   	         ur.save(p);
           return ResponseEntity.ok("Usuario eliminado correctamente");
       } else {
           return ResponseEntity.noContent().build();
@@ -86,23 +106,7 @@ public class ServicioUsuarios {
     }
     
     
-    /**
-   * Método para borrar un usuario
-   * @param id
-   * @return Usuario
-   */
-  @RequestMapping(value = "/borrar/{id}", method = RequestMethod.DELETE)
-  public ResponseEntity<Usuario> delete(@PathVariable("id") Integer id) {
-      // Buscamos el usuario por id
-      Optional<Usuario> op = ur.findById(id);
-      // si existe lo borramos y devolvemos
-      if (op.isPresent()) {
-          // Le pasamos los datos
-          Usuario p = op.get();
-          ur.deleteById(id);
-          return ResponseEntity.ok(p);
-      } else {
-          return ResponseEntity.noContent().build();
-      }
-  }
+   
+  
+  
 }

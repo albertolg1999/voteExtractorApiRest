@@ -34,7 +34,8 @@ public class Controller {
 
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
     public void add(@RequestBody Usuario user) {
-        s.saveUser(user);
+		s.saveUser(user);
+		
     }
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
@@ -43,6 +44,18 @@ public class Controller {
         ResponseEntity<String> t=s.deleteUser(id);
         return t;
     }
+	
+	/**
+   * Método para actualizar los datos del usuario
+   * @param id
+   * @param u
+   * @return Usuario
+   */
+ @RequestMapping(value = "modificarUser/{id}", method = RequestMethod.PUT)
+  public ResponseEntity<String> update(@PathVariable("id") Integer id, @RequestBody Usuario u) {
+	 ResponseEntity<String> t=s.updateUser(id,u);
+	 return t;
+  }
 	
 	/**
      * Listamos todos los usuarios dado un rol
