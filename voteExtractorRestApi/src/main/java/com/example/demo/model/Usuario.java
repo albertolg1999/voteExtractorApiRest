@@ -38,6 +38,7 @@ public class Usuario implements Serializable {
     }
 
 
+
     public String getUser() {
         return user;
     }

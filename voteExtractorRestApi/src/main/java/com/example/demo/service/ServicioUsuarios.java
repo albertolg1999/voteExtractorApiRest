@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-//import com.example.demo.model.User;
-//import com.example.demo.model.User;
 import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuariosRepository;
 
@@ -28,16 +26,17 @@ public class ServicioUsuarios {
 	
 	@Autowired
 	UsuariosRepository ur;
+	
+	public List<Usuario> listAllUser() {
+        return ur.findAll();
+    }
+	
 	/**
      * Listamos todos los usuarios dado un rol
      *
      * @param rol
      * @return List<Usuario></Usuario>
      */
-	public List<Usuario> listAllUser() {
-        return ur.findAll();
-    }
-	
     public List<Usuario> findByRol(int rol) {
 
         

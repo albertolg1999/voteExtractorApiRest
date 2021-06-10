@@ -1,15 +1,25 @@
 package com.example.demo.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-//import com.example.demo.model.User;
 import com.example.demo.model.Usuario;
+import com.example.demo.model.Votos;
 import com.example.demo.service.ServicioUsuarios;
+import com.example.demo.service.ServicioVotos;
+
+
 
 
 
@@ -21,11 +31,10 @@ public class Controller {
 	@Autowired
 	ServicioUsuarios s;
 	
-	@GetMapping("hola")
-    
-    public String hola() {
-        return "hola chicos, vuestro lider avanza";
-    }
+	@Autowired
+	ServicioVotos v;
+	
+	
 
 	@GetMapping("")
     public List<Usuario> list() {
@@ -87,9 +96,39 @@ public class Controller {
       return ent;
 
   }
-    
-    
-    
-    
-    
+  
+ 
+	
+	/**
+	   * Método para actualizar los datos del usuario
+	   * @param id
+	   * @param u
+	   * @return Usuario
+	   */
+	 @RequestMapping(value = "subirVotos/{representante}", method = RequestMethod.PUT)
+	  public ResponseEntity<String> update(@PathVariable("representante") String representante) {
+		 ResponseEntity<String> t=v.updateVotos(representante);
+		 return t;
+	  }
+	 
+	 /**
+	   * Método para actualizar los datos del usuario
+	   * @param id
+	   * @param u
+	   * @return Usuario
+	   */
+	 @RequestMapping(value = "/v/{representante}", method = RequestMethod.GET)
+	    public ResponseEntity<Votos> findV(@PathVariable("representante") String representante) {
+
+	        // Se conecta y busca los usuarios
+	       Votos vr = v.getRep(representante);
+	        // Devolvemos la lista de usuarios
+	        return ResponseEntity.ok(vr);
+	    }
+	
+	 @GetMapping("/resultados")
+	    public List<Votos> listarVotos() {
+	        return v.listAllVotos();
+	    }
+	
 }
