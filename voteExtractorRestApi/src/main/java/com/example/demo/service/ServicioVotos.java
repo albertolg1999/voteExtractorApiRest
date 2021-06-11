@@ -39,7 +39,11 @@ public class ServicioVotos {
 	
     
     
-    
+	/**
+     * Buscamos el representante elegido en bd y le sumamos 1
+     * 
+     * @param representante
+     */
     public ResponseEntity<String>  updateVotos(String representante) {
 		Votos op = vr.findByNombre(representante);
 		
