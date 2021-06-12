@@ -40,6 +40,12 @@ public class Controller {
     public List<Usuario> list() {
         return s.listAllUser();
     }
+	
+	/**
+	   * Método para insertar un usuario
+	   * @param Usuario
+	   * @return 
+	   */
 
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Usuario user) {
@@ -49,6 +55,11 @@ public class Controller {
 		
     }
 	
+	/**
+	   * Método para eliminar un usuario
+	   * @param id
+	   * @return 
+	   */
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> delete(@PathVariable Integer id) {
 
