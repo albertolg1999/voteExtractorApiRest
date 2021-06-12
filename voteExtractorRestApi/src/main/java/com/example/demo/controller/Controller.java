@@ -44,7 +44,7 @@ public class Controller {
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Usuario user) {
 		ResponseEntity<String>t=s.saveUser(user);
-		System.out.println(t);
+		
 		return t;
 		
     }
