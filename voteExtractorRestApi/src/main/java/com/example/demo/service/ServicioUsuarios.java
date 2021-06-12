@@ -54,9 +54,16 @@ public class ServicioUsuarios {
      */
     
     
-    public void saveUser(Usuario user) {
-    	
-    	ur.save(user);
+    public ResponseEntity<String> saveUser(Usuario user) {
+    	Usuario op = ur.findByUser(user.getUser());
+    	// si existe lo borramos y devolvemos
+      if (op==null) {
+          // Le pasamos los datos
+    	  ur.save(user);
+          return ResponseEntity.ok("Usuario insertado correctamente");
+      } else {
+          return ResponseEntity.noContent().build();
+      }
         
     }
     
