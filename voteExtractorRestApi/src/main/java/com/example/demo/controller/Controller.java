@@ -118,7 +118,7 @@ public class Controller {
 	   * @param u
 	   * @return Usuario
 	   */
-	 @RequestMapping(value = "subirVotos/{representante}", method = RequestMethod.PUT)
+	 @RequestMapping(value = "/subirVotos/{representante}", method = RequestMethod.PUT)
 	  public ResponseEntity<String> update(@PathVariable("representante") String representante) {
 		 ResponseEntity<String> t=v.updateVotos(representante);
 		 return t;
